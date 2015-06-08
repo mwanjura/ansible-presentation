@@ -1,0 +1,450 @@
+/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+}
+@page {
+  size: landscape;
+  margin: 0;
+}
+article {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  display: none;
+}
+article.bespoke-parent {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  -webkit-perspective: 600px;
+  perspective: 600px;
+}
+@media print {
+  article.bespoke-parent {
+    overflow: visible;
+    position: static;
+  }
+}
+article.bespoke-parent.anger {
+  background: #f90;
+}
+article.bespoke-parent.anger .bespoke-progress-bar {
+  background: #fff;
+}
+article.bespoke-parent.danger {
+  background: #f00;
+  color: #fff;
+}
+article.bespoke-parent.danger .bespoke-progress-bar {
+  background: #fff;
+}
+article.bespoke-parent.white {
+  background: #fff;
+}
+.bespoke-slide {
+  -webkit-transition: -webkit-transform 0.6s ease, opacity 0.6s ease, background 0.6s ease;
+  transition: transform 0.6s ease, opacity 0.6s ease, background 0.6s ease;
+  -webkit-transform-origin: 50% 50% 0;
+  transform-origin: 50% 50% 0;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  width: 640px;
+  height: 480px;
+  position: absolute;
+  top: 50%;
+  margin-top: -240px;
+  left: 50%;
+  margin-left: -320px;
+  background: transparent;
+  padding: 40px;
+  border-radius: 0;
+}
+@media print {
+  .bespoke-slide {
+    zoom: 1 !important;
+    height: 743px;
+    width: 100%;
+    page-break-before: always;
+    position: static;
+    margin: 0;
+  }
+}
+.bespoke-before {
+  -webkit-transform: translateX(640px) translateX(-320px) rotateY(-20deg) translateX(-320px);
+  transform: translateX(640px) translateX(-320px) rotateY(-20deg) translateX(-320px);
+}
+.bespoke-after {
+  -webkit-transform: translateX(-640px) translateX(320px) rotateY(20deg) translateX(320px);
+  transform: translateX(-640px) translateX(320px) rotateY(20deg) translateX(320px);
+}
+@media print {
+  .bespoke-after {
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+.bespoke-inactive {
+  opacity: 0;
+  pointer-events: none;
+}
+@media print {
+  .bespoke-inactive {
+    opacity: 1;
+  }
+}
+.bespoke-active {
+  opacity: 1;
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+}
+.bespoke-bullet {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.bespoke-bullet-inactive {
+  opacity: 0;
+}
+li.bespoke-bullet-inactive {
+  -webkit-transform: translateX(-10px) translateZ(-10px) rotateY(20deg);
+  transform: translateX(-10px) translateZ(-10px) rotateY(20deg);
+}
+@media print {
+  .bespoke-bullet-inactive {
+    opacity: 1;
+  }
+}
+.bespoke-bullet-active {
+  opacity: 1;
+}
+.bespoke-scale-parent {
+  -webkit-perspective: 600px;
+  perspective: 600px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+.bespoke-scale-parent .bespoke-active {
+  pointer-events: auto;
+}
+@media print {
+  .bespoke-scale-parent {
+    -webkit-transform: none !important;
+    transform: none !important;
+  }
+}
+.bespoke-progress-parent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+}
+@media only screen and (min-width: 1366px) {
+  .bespoke-progress-parent {
+    height: 10px;
+  }
+}
+@media print {
+  .bespoke-progress-parent {
+    display: none;
+  }
+}
+.bespoke-progress-bar {
+  -webkit-transition: width 0.6s ease;
+  transition: width 0.6s ease;
+  position: absolute;
+  height: 100%;
+  background: #74b73f;
+}
+.emphatic,
+.emphatic .bespoke-slide {
+  background: transparent;
+}
+pre {
+  padding: 26px !important;
+  border-radius: 8px;
+  border: none !important;
+  box-shadow: none !important;
+}
+pre span {
+  text-shadow: none !important;
+}
+body {
+  color: #333;
+}
+body .gif {
+  color: rgba(255,255,255,0.8);
+}
+body .bespoke-slide.light {
+  color: rgba(0,0,0,0.5);
+}
+.white {
+  color: #fff;
+}
+.black {
+  color: #000;
+}
+h1 {
+  font-size: 72px;
+  font-weight: 600;
+  line-height: 82px;
+  letter-spacing: -2px;
+  margin-bottom: 16px;
+}
+h2 {
+  font-weight: 450;
+  font-size: 42px;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+.bespoke-slide.light h2 {
+  color: rgba(0,0,0,0.6);
+}
+h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+.bespoke-slide.light h3 {
+  color: rgba(0,0,0,0.5);
+}
+hr {
+  visibility: hidden;
+  height: 20px;
+}
+ul {
+  list-style: none;
+}
+li {
+  margin-bottom: 12px;
+}
+p {
+  margin: 0 100px 12px;
+  line-height: 22px;
+}
+blockquote {
+  max-width: 75%;
+}
+small {
+  font-size: 50%;
+}
+.avatar {
+  display: block;
+  margin: 0 auto;
+  width: 120px;
+  height: 120px;
+  border-radius: 120px;
+}
+.avatar--small {
+  width: 70px;
+  height: 70px;
+}
+.d4e-logo {
+  float: right;
+  margin-top: -25px;
+  margin-left: 20px;
+}
+.hiring {
+  float: right;
+  margin-top: -60px;
+  margin-left: 300px;
+}
+code,
+pre {
+  font-size: 12px;
+  line-height: 15px;
+  margin: 0;
+  padding: 0;
+}
+code span,
+pre span {
+  margin: 0;
+  padding: 0;
+}
+pre {
+  margin: 0;
+  padding: 10px !important;
+}
+.gif {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.gif--poison {
+  background-image: url("http://media.giphy.com/media/71XcIsUXS854Q/giphy.gif");
+}
+.gif--complicated {
+  background-image: url("http://media.giphy.com/media/LBMKz5bIAvLWM/giphy.gif");
+}
+.gif--shame {
+  background-image: url("http://media.giphy.com/media/aZGZZBWN98OgE/giphy.gif");
+}
+.gif--hope {
+  background-image: url("http://media.giphy.com/media/1mtKnWJVTpUKQ/giphy.gif");
+}
+.gif--happiness {
+  background-image: url("http://media.giphy.com/media/ITnn2IenMv7SE/giphy.gif");
+}
+.gif--hate {
+  background-image: url("http://media.giphy.com/media/90FH7I3McAQ7u/giphy.gif");
+}
+.gif--agree {
+  background-image: url("http://media.giphy.com/media/jN0ygssTH2hoI/giphy.gif");
+}
+.gif--fun {
+  background-image: url("http://media.giphy.com/media/NRoNlf3qsQWNq/giphy.gif");
+}
+.gif--design {
+  background-image: url("http://media.giphy.com/media/aUTye2tUx1fz2/giphy.gif");
+}
