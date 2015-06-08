@@ -1,4 +1,4 @@
-# Capistrano3 Symfony Presentation
+# Ansible Presentation
 > A [Bespoke.js](http://markdalgleish.com/projects/bespoke.js) presentation, built with [generator-bespoke](https://github.com/markdalgleish/generator-bespoke)
 
 ## Demo project with vagrant boxes
@@ -18,4 +18,13 @@ Then, install dependencies and run the preview server:
 ```bash
 $ npm install && bower install
 $ gulp serve
+```
+
+
+# Demo
+
+```
+cd demo
+vagrant up
+ansible-playbook site.yml -i inventories/ansible-demo.vagrant
 ```
