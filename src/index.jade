@@ -13,7 +13,9 @@ html
 
             section
                 img(src='images/ansible_logo_black_square.png' width='300' height='300')
-                h3 DevOps without pain
+                h3 for DevOps
+                h5 Machine-provisioning and application-deployment with ease.
+                br
                 br
                 small Ansible presentation 06/15 @ Web-Dev-BBQ #4 Stuttgart/Germany
 
@@ -38,14 +40,27 @@ html
 
                 ul.bullet
                     li What is ansible?
-                    li Ansible basics
-                    li Ansible provisioning & best practice
-                    li Ansible application deployment
-                    li Ansible tower
+                    li The basics
+                    li Provisioning & best practice
+                    li Application deployment
+                    li Toosl & Tipps
 
             section.gif.gif--poison
-                h1.white What is your poison of choice?
-                h2.white Puppet, Chef, Salt?
+                h2.white What's your poison?
+                br
+                br
+                br
+                br
+                br
+                br
+                h3.white Puppet, Chef, Salt, CFEngine, YADT, BASH, Ant, Phing, Capistrano, Deployer, Drush? ...
+                br
+                br
+                br
+                br
+                br
+                br
+                h2.white All of them?
 
             section.gif.gif--complicated
                 br
@@ -114,10 +129,8 @@ html
                 br
                 br
                 br
-                br
-                br
-                br
-                h3.white So you're not one of those cool DevOps?
+                h3.white So you're not an fulltime admin?<br>Neither one of those cool DevOps?
+                h4.white ...without freetime and RL-friends?
 
             section.gif.gif--hope
                 br
@@ -133,7 +146,7 @@ html
                 br
                 br
                 br
-                h2.white You know YAML?
+                h2.white Know YAML?
                 h2.white A bit of BASH?
 
             section.gif.gif--happiness
@@ -150,7 +163,8 @@ html
                 br
                 br
                 br
-                h1 Damn you are a real DevOps!!!
+                h1.white Damn!
+                h2.white You are a real DevOps!!!
 
             section
                 h1 So what is ansible?
@@ -159,12 +173,16 @@ html
                 h2 So what is ansible?
                 br
                 ul.bullet
-                    li Ansible is an open-source software platform for configuring and managing computers.
-                    li Founded by Michael DeHaan
-                    li First release February 20, 2012 - 3 years ago
-                    li Written in python
-                    li It runs over SSH or PowerShell
-                    li It was named "Ansible" after the fictional instantaneous hyperspace communication system featured in Orson Scott Card's Ender's Game, and originally invented by Ursula K. Le Guin for her 1966 novel Rocannon's World.
+                    li A open-source software for configuring and managing computers.<br><br>
+                    li Founded by Michael DeHaan<br><br>
+                    li First release February 20, 2012 - 3 years ago<br><br>
+                    li Written in python<br><br>
+                    li It runs over SSH or PowerShell<br><br>
+                    li It was named "Ansible" after the fictional instantaneous hyperspace communication system featured in Orson Scott Card's Ender's Game<br><br>
+
+            section
+                h2 Michael DeHaan's motivation?
+                h3 "I wrote Ansible because none of the existing tools fit my brain.<br><br>I wanted a tool that I could not use for 6 months, come back later, and still remember how it worked."
 
             section
                 h2.black Design goals
@@ -172,25 +190,19 @@ html
                 br
                 br
                 h3.black Minimal in nature
-                text.black Management systems should not impose additional dependencies on the environment.
+                text.black No additional dependencies on the environment.
                 br
                 br
                 h3.black Secure
-                text.black Ansible does not deploy vulnerable agents to nodes. Only OpenSSH is required, which is already critically tested.
+                text.black Ansible does not deploy vulnerable agents to nodes.<br>Only OpenSSH is required.
                 br
                 br
                 h3.black Highly reliable
-                text.black The idempotent resource model is applied to deployment to prevent side-effects from re-running scripts.
+                text.black The idempotent ressource model.<br>Every run develivers the same result.
                 br
                 br
                 h3.black Low learning curve
                 text.black Playbooks use an easy and descriptive language based on YAML.
-
-            section
-                h2 Michael DeHaan's motivation?
-                h3 "I wrote Ansible because none of the existing tools fit my brain. I wanted a tool that I could not use for 6 months, come back later, and still remember how it worked."
-                h4 Michael DeHaan
-                p Ansible project founder
 
             section.gif.gif--fun
                 h2.white Ok let's have some fun!
@@ -224,6 +236,26 @@ html
             section
                 h1 Ansible basics
 
+            section
+                h3 ... say's more than a thousand words.<br>A basic playbook.
+                h6 Install an Apache webserver, configure and restart it.
+                pre
+                    code.language-javascript.
+                        - hosts: webservers
+                          vars:
+                              http_port: 80
+                          tasks:
+                            - name: ensure apache is at the latest version
+                              yum: pkg=httpd state=latest
+                            - name: write the apache config file
+                              template: src=/srv/httpd.j2 dest=/etc/httpd.conf
+                              notify:
+                                - restart apache
+                            - name: ensure apache is running (and enable it at boot)
+                              service: name=httpd state=started enabled=yes
+                        handlers:
+                            - name: restart apache
+                              service: name=httpd state=restarted
             section
                 h2 Fork me!
                 h3 And have some instant fun<br> with
