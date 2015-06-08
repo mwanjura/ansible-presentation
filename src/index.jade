@@ -14,7 +14,7 @@ html
             section
                 img(src='images/ansible_logo_black_square.png' width='300' height='300')
                 h3 for DevOps
-                h5 Machine-provisioning and application-deployment with ease.
+                h5 Machine provisioning and application deployment with ease.
                 br
                 br
                 small Ansible presentation 06/15 @ Web-Dev-BBQ #4 Stuttgart/Germany
@@ -35,15 +35,12 @@ html
                     img.hiring(src='http://d4e.io/hiring.gif' width='120')
 
             section
-                h1 Agenda
-                br
-
                 ul.bullet
-                    li What is ansible?
-                    li The basics
-                    li Provisioning & best practice
-                    li Application deployment
-                    li Toosl & Tipps
+                    li What is Ansible?
+                    li The Basics
+                    li Provisioning & Best Practice
+                    li Application Deployment
+                    li Tools & Tipps
 
             section.gif.gif--poison
                 h2.white What's your poison?
@@ -53,14 +50,14 @@ html
                 br
                 br
                 br
-                h3.white Puppet, Chef, Salt, CFEngine, YADT, BASH, Ant, Phing, Capistrano, Deployer, Drush? ...
+                h3.white Puppet, Chef, Salt, Cobbler, CFEngine, YADT, JuJu, BASH, Ant, Phing, Capistrano, Deployer, Drush, Surf, Docker, Rocket...?
                 br
                 br
                 br
                 br
                 br
                 br
-                h2.white All of them?
+                h2.white Or all of them?
 
             section.gif.gif--complicated
                 br
@@ -76,7 +73,7 @@ html
                 br
                 br
                 br
-                h2.white You think they are complicated?
+                h2.white You think DevOps and the tools are complicated?
 
             section.gif.gif--hate
                 h1.white You hate it?
@@ -130,7 +127,6 @@ html
                 br
                 br
                 h3.white So you're not an fulltime admin?<br>Neither one of those cool DevOps?
-                h4.white ...without freetime and RL-friends?
 
             section.gif.gif--hope
                 br
@@ -146,7 +142,7 @@ html
                 br
                 br
                 br
-                h2.white Know YAML?
+                h2.white You know YAML?
                 h2.white A bit of BASH?
 
             section.gif.gif--happiness
@@ -173,12 +169,12 @@ html
                 h2 So what is ansible?
                 br
                 ul.bullet
-                    li A open-source software for configuring and managing computers.<br><br>
+                    li An open-source software for configuring and managing computers.<br><br>
                     li Founded by Michael DeHaan<br><br>
                     li First release February 20, 2012 - 3 years ago<br><br>
-                    li Written in python<br><br>
+                    li Written in Python<br><br>
                     li It runs over SSH or PowerShell<br><br>
-                    li It was named "Ansible" after the fictional instantaneous hyperspace communication system featured in Orson Scott Card's Ender's Game<br><br>
+                    li It was named "Ansible" after the fictional instantaneous hyperspace communication system featured in Orson Scott Card's "Ender's Game"<br><br>
 
             section
                 h2 Michael DeHaan's motivation?
@@ -198,7 +194,7 @@ html
                 br
                 br
                 h3.black Highly reliable
-                text.black The idempotent ressource model.<br>Every run develivers the same result.
+                text.black Every run develivers the same result.
                 br
                 br
                 h3.black Low learning curve
@@ -234,16 +230,16 @@ html
                 br
 
             section
-                h1 Ansible basics
+                h1 Ansible Basics
 
             section
-                h3 ... say's more than a thousand words.<br>A basic playbook.
-                h6 Install an Apache webserver, configure and restart it.
+                h3 ... is worth a thousand words.<br>A complete playbook.
+                h6 Installs an Apache webserver, configures and restarts it. On 1 or 1000 Servers...
                 pre
-                    code.language-javascript.
+                    code.language-css.
                         - hosts: webservers
                           vars:
-                              http_port: 80
+                            http_port: 80
                           tasks:
                             - name: ensure apache is at the latest version
                               yum: pkg=httpd state=latest
@@ -253,7 +249,7 @@ html
                                 - restart apache
                             - name: ensure apache is running (and enable it at boot)
                               service: name=httpd state=started enabled=yes
-                        handlers:
+                          handlers:
                             - name: restart apache
                               service: name=httpd state=restarted
             section
