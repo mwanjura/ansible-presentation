@@ -1,4 +1,4 @@
-app_document_root: "/var/www/html/current"
+app_document_root: "/var/www/html"
 
 php_enable_webserver: true
 php_webserver_daemon: "apache"
@@ -33,7 +33,7 @@ php_packages:
 apache_listen_port: 80
 apache_listen_port: 80
 apache_vhosts:
-  - { servername: "ansible-debo.vagrant", documentroot: "{{ app_document_root }}/current/public" }
+  - { servername: "ansible-demo.vagrant", documentroot: "{{ app_document_root }}/current/web" }
 apache_user: apache
 apache_group: apache
 

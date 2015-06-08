@@ -1,0 +1,11 @@
+---
+- name: Deploy Demo App to Server
+  hosts: all
+  sudo: true
+  vars:
+    ansistrano_deploy_from: "./"
+    ansistrano_deploy_to: "/var/www/html"
+    ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/deploy/tasks/after-symlink.yml"
+    ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/deploy/tasks/before-symlink.yml"
+  roles:
+    - { role: carlosbuenosvinos.ansistrano-deploy }

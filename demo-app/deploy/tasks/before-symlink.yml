@@ -1,0 +1,5 @@
+- name: ensure cache dir
+  file: path={{ ansistrano_release_path.stdout }}/app/cache state=directory mode=0777 recurse=true
+
+- name: ensure log dir
+  file: path={{ ansistrano_release_path.stdout }}/app/logs state=directory mode=0777 recurse=true

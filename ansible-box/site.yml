@@ -4,8 +4,6 @@
     - vars/main.yml
 
   pre_tasks:
-    - file: path="{{ app_document_root }}" state=directory recurse=yes
-
     - selinux: state=disabled # only for demo
       when: ansible_os_family == "RedHat" and ansible_distribution_version.split(".")[0] == '7'
 
