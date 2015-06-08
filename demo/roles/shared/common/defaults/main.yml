@@ -1,0 +1,13 @@
+common_packages:
+  - git
+  - curl
+  - mc
+  - vim
+  - python-setuptools
+  - libselinux-python
+  - wget
+  - p7zip
+  - zip
+  - gzip
+
+common_packages_to_be_removed: ~

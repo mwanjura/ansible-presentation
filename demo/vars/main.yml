@@ -1,0 +1,74 @@
+app_document_root: "/var/www/html/current"
+
+php_enable_webserver: true
+php_webserver_daemon: "apache"
+php_enable_php_fpm: false
+php_enable_apc: false
+php_display_errors: "Off"
+php_date_timezone: "Europe/Berlin"
+php_packages:
+  - php
+  - php-cli
+  - php-common
+  - php-devel
+  - php-gd
+  - php-mbstring
+  - php-pdo
+  - php-apcu
+  - php-xml
+  - php-sqlite
+  - php-mysql
+  - php-tidy
+  - php-xdebug
+  - php-memcache
+  - php-intl
+  - php-mcrypt
+  - php-soap
+  - php-imap
+  - php-pear
+  - php-xml
+  - php-xmlrpc
+  - ImageMagick
+
+apache_listen_port: 80
+apache_listen_port: 80
+apache_vhosts:
+  - { servername: "ansible-debo.vagrant", documentroot: "{{ app_document_root }}/current/public" }
+apache_user: apache
+apache_group: apache
+
+enabled_remi_repositories:
+  - remi
+  - remi-test
+disabled_remi_repositories:
+  - remi-php55
+  - remi-php56
+  - remi-debuginfo
+  - remi-php55-debuginfo
+  - remi-php56-debuginfo
+  - remi-test-debuginfo
+
+mysql_user: root
+mysql_root_password: "{{ mariadb.root_password }}"
+
+mysql_databases:
+  - name: demo
+    encoding: utf8
+    collation: utf8_general_ci
+
+mariadb:
+    root_password: passw0rd!
+    user: sixcms
+    password: passw0rd!
+    database: sixcms
+
+mysql_packages:
+  - mariadb
+  - mariadb-server
+  - mariadb-libs
+  - MySQL-python
+  - perl-DBD-MySQL
+mysql_daemon: mariadb
+mysql_log_error: /var/log/mariadb/mariadb.log
+mysql_syslog_tag: mariadb
+mysql_pid_file: /var/run/mariadb/mariadb.pid

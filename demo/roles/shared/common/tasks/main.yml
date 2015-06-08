@@ -1,0 +1,32 @@
+---
+- name: remove common packages
+  yum: pkg={{ item }} state=absent
+  with_items: common_packages_to_be_removed
+  when: ansible_os_family == "RedHat"
+
+- name: install the 'Development tools' package group
+  yum: name="@Development tools" state=present
+  when: ansible_os_family == "RedHat"
+
+- name: remove common packages
+  yum: pkg={{ item }} state=absent
+  with_items: common_packages_to_be_removed
+  when: ansible_os_family == "RedHat"
+
+- name: install common packages
+  yum: pkg={{ item }} state=present
+  with_items: common_packages
+  when: ansible_os_family == "RedHat"
+
+- name: Install ntp
+  yum: name=ntp state=present
+  tags: ntp
+
+- name: Start the ntp service
+  service: name=ntpd state=started enabled=true
+  tags: ntp
+
+- name: Cleanup yum transactions
+  command: /usr/sbin/yum-complete-transaction --cleanup-only
+  sudo: true
+  when: ansible_os_family == "RedHat"

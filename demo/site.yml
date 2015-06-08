@@ -1,0 +1,28 @@
+- hosts: all
+  sudo: true
+  vars_files:
+    - vars/main.yml
+
+  pre_tasks:
+    - file: path="{{ app_document_root }}" state=directory recurse=yes
+
+    - selinux: state=disabled # only for demo
+      when: ansible_os_family == "RedHat" and ansible_distribution_version.split(".")[0] == '7'
+
+    - service: name=firewalld state=stopped # only for demo
+      when: ansible_os_family == "RedHat" and ansible_distribution_version.split(".")[0] == '7'
+
+
+  post_tasks:
+    - file: path=/etc/httpd/conf.d/welcome.conf state=absent
+    - service: name=httpd enabled=true state=reloaded
+
+  roles:
+    - { role: repo_epel, tags: repo_epel }
+    - { role: repo_remi, tags: repo_remi }
+    - { role: geerlingguy.ntp, tags: ntp }
+    - { role: common, tags: common }
+    - { role: mwanjura.mysql, tags: mysql }
+    - { role: geerlingguy.php, tags: php }
+    - { role: geerlingguy.apache, tags: apache }
+    - { role: geerlingguy.composer, tags: composer }

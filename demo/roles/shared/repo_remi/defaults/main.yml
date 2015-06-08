@@ -1,0 +1,11 @@
+enabled_remi_repositories:
+  - remi
+  - remi-test
+
+disabled_remi_repositories:
+  - remi-php55
+  - remi-php56
+  - remi-debuginfo
+  - remi-php55-debuginfo
+  - remi-php56-debuginfo
+  - remi-test-debuginfo

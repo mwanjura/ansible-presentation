@@ -1,0 +1,34 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+    config.ssh.insert_key = false
+    config.ssh.private_key_path = "~/.vagrant.d/insecure_private_key"
+
+    config.vm.define "ansibble-demo" do |ansibledemo|
+        # Configure the box to use
+        ansibledemo.vm.box = "chef/centos-7.0"
+        ansibledemo.vm.box_download_insecure = true
+        ansibledemo.vm.hostname  = "ansible-demo.vagrant"
+
+        # Configure the network interfaces
+        ansibledemo.vm.network :private_network, ip: "192.168.33.112", auto_correct: true
+
+        ansibledemo.hostsupdater.remove_on_suspend = true
+
+        # Configure VirtualBox environment
+        ansibledemo.vm.provider :virtualbox do |v, override|
+          v.customize ["modifyvm", :id, "--memory", 2048]
+          v.customize ["modifyvm", :id, "--cpus", 2]
+          v.name = "sixcms"
+          v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+        end
+
+    end
+end

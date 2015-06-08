@@ -1,0 +1,13 @@
+enabled_epel_repositories:
+  - epel
+
+disabled_epel_repositories:
+  - epel-debuginfo
+  - epel-source
+
+enabled_epeltesting_repositories:
+  - epel-testing
+
+disabled_epeltesting_repositories:
+  - epel-testing-debuginfo
+  - epel-testing-source
