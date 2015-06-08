@@ -9,7 +9,8 @@
   <body>
     <article>
       <section><img src="images/ansible_logo_black_square.png" width="300" height="300">
-        <h3>DevOps without pain</h3><br><small>Ansible presentation 06/15 @ Web-Dev-BBQ #4 Stuttgart/Germany</small>
+        <h3>for DevOps</h3>
+        <h5>Machine provisioning and application deployment with ease.</h5><br><br><small>Ansible presentation 06/15 @ Web-Dev-BBQ #4 Stuttgart/Germany</small>
       </section>
       <section><b>Your flight captains for the next couple of minutes:</b><br>
         <h2>Markus Wanjura</h2>
@@ -21,21 +22,21 @@
         <p>Wir suchen gerade<br>Frontend-Freelancer!<img src="http://d4e.io/hiring.gif" width="120" class="hiring"></p>
       </section>
       <section>
-        <h1>Agenda</h1><br>
         <ul class="bullet">
-          <li>What is ansible?</li>
-          <li>Ansible basics</li>
-          <li>Ansible provisioning & best practice</li>
-          <li>Ansible application deployment</li>
-          <li>Ansible tower</li>
+          <li>What is Ansible?</li>
+          <li>The Basics</li>
+          <li>Provisioning & Best Practice</li>
+          <li>Application Deployment</li>
+          <li>Tools & Tipps</li>
         </ul>
       </section>
       <section class="gif gif--poison">
-        <h1 class="white">What is your poison of choice?</h1>
-        <h2 class="white">Puppet, Chef, Salt?</h2>
+        <h2 class="white">What's your poison?</h2><br><br><br><br><br><br>
+        <h3 class="white">Puppet, Chef, Salt, Cobbler, CFEngine, YADT, JuJu, BASH, Ant, Phing, Capistrano, Deployer, Drush, Surf, Docker, Rocket...?</h3><br><br><br><br><br><br>
+        <h2 class="white">Or all of them?</h2>
       </section>
       <section class="gif gif--complicated"><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <h2 class="white">You think they are complicated?</h2>
+        <h2 class="white">You think DevOps and the tools are complicated?</h2>
       </section>
       <section class="gif gif--hate">
         <h1 class="white">You hate it?</h1><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -43,8 +44,8 @@
       <section class="gif gif--agree">
         <h1 class="white">You're right!</h1><br><br><br><br><br><br><br><br><br><br><br><br><br>
       </section>
-      <section class="gif gif--shame"><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <h3 class="white">So you're not one of those cool DevOps?</h3>
+      <section class="gif gif--shame"><br><br><br><br><br><br><br><br><br><br><br>
+        <h3 class="white">So you're not an fulltime admin?<br>Neither one of those cool DevOps?</h3>
       </section>
       <section class="gif gif--hope"><br><br>
         <h1 class="white">But wait!</h1><br><br><br><br><br><br><br><br><br><br>
@@ -52,7 +53,8 @@
         <h2 class="white">A bit of BASH?</h2>
       </section>
       <section class="gif gif--happiness"><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <h1>Damn you are a real DevOps!!!</h1>
+        <h1 class="white">Damn!</h1>
+        <h2 class="white">You are a real DevOps!!!</h2>
       </section>
       <section>
         <h1>So what is ansible?</h1>
@@ -60,36 +62,53 @@
       <section>
         <h2>So what is ansible?</h2><br>
         <ul class="bullet">
-          <li>Ansible is an open-source software platform for configuring and managing computers.</li>
-          <li>Founded by Michael DeHaan</li>
-          <li>First release February 20, 2012 - 3 years ago</li>
-          <li>Written in python</li>
-          <li>It runs over SSH or PowerShell</li>
-          <li>It was named "Ansible" after the fictional instantaneous hyperspace communication system featured in Orson Scott Card's Ender's Game, and originally invented by Ursula K. Le Guin for her 1966 novel Rocannon's World.</li>
+          <li>An open-source software for configuring and managing computers.<br><br></li>
+          <li>Founded by Michael DeHaan<br><br></li>
+          <li>First release February 20, 2012 - 3 years ago<br><br></li>
+          <li>Written in Python<br><br></li>
+          <li>It runs over SSH or PowerShell<br><br></li>
+          <li>It was named "Ansible" after the fictional instantaneous hyperspace communication system featured in Orson Scott Card's "Ender's Game"<br><br></li>
         </ul>
+      </section>
+      <section>
+        <h2>Michael DeHaan's motivation?</h2>
+        <h3>"I wrote Ansible because none of the existing tools fit my brain.<br><br>I wanted a tool that I could not use for 6 months, come back later, and still remember how it worked."</h3>
       </section>
       <section>
         <h2 class="black">Design goals</h2><br><br><br>
         <h3 class="black">Minimal in nature</h3>
-        <text class="black">Management systems should not impose additional dependencies on the environment.</text><br><br>
+        <text class="black">No additional dependencies on the environment.</text><br><br>
         <h3 class="black">Secure</h3>
-        <text class="black">Ansible does not deploy vulnerable agents to nodes. Only OpenSSH is required, which is already critically tested.</text><br><br>
+        <text class="black">Ansible does not deploy vulnerable agents to nodes.<br>Only OpenSSH is required.</text><br><br>
         <h3 class="black">Highly reliable</h3>
-        <text class="black">The idempotent resource model is applied to deployment to prevent side-effects from re-running scripts.</text><br><br>
+        <text class="black">Every run develivers the same result.</text><br><br>
         <h3 class="black">Low learning curve</h3>
         <text class="black">Playbooks use an easy and descriptive language based on YAML.</text>
-      </section>
-      <section>
-        <h2>Michael DeHaan's motivation?</h2>
-        <h3>"I wrote Ansible because none of the existing tools fit my brain. I wanted a tool that I could not use for 6 months, come back later, and still remember how it worked."</h3>
-        <h4>Michael DeHaan</h4>
-        <p>Ansible project founder</p>
       </section>
       <section class="gif gif--fun">
         <h2 class="white">Ok let's have some fun!</h2><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
       </section>
       <section>
-        <h1>Ansible basics</h1>
+        <h1>Ansible Basics</h1>
+      </section>
+      <section>
+        <h3>... is worth a thousand words.<br>A complete playbook.</h3>
+        <h6>Installs an Apache webserver, configures and restarts it. On 1 or 1000 Servers...</h6>
+        <pre><code class="language-css">- hosts: webservers
+  vars:
+    http_port: 80
+  tasks:
+    - name: ensure apache is at the latest version
+      yum: pkg=httpd state=latest
+    - name: write the apache config file
+      template: src=/srv/httpd.j2 dest=/etc/httpd.conf
+      notify:
+        - restart apache
+    - name: ensure apache is running (and enable it at boot)
+      service: name=httpd state=started enabled=yes
+  handlers:
+    - name: restart apache
+      service: name=httpd state=restarted</code></pre>
       </section>
       <section>
         <h2>Fork me!</h2>
