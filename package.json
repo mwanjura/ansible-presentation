@@ -1,7 +1,9 @@
 {
   "name": "capistrano3-symfony-demo-presentation",
   "version": "1.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "gulp-browserify": "^0.5.1"
+  },
   "devDependencies": {
     "bespoke": "^1.0.0",
     "bespoke-backdrop": "^1.0.0",
