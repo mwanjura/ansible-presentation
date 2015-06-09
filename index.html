@@ -314,19 +314,17 @@ valid users = {{ netatalk.user }}
       </section>
       <section>
         <h3>Shared role "ansistrano"</h3>
-        <h4>Capistrano or Deployer like application deployment</h4><br><br>
+        <h4>Capistrano like application deployment</h4>
+        <p>Works as a drop-in replacement for capistrano or deployer</p><a href="https://github.com/ansistrano/deploy">https://github.com/ansistrano/deploy</a><br>
         <pre><code class="language-css">./deploy.yml</code></pre>
-        <pre><code class="language-css">---
-- name: Deploy Demo App to Server
-  hosts: all
-  sudo: true
-  vars:
-    ansistrano_deploy_from: "./"
-    ansistrano_deploy_to: "/var/www/html"
-    ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/deploy/tasks/after-symlink.yml"
-    ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/deploy/tasks/before-symlink.yml"
-  roles:
-    - { role: carlosbuenosvinos.ansistrano-deploy }</code></pre>
+        <pre><code class="language-css">hosts: all
+vars:
+  ansistrano_deploy_from: "./"
+  ansistrano_deploy_to: "/var/www/html"
+  ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/deploy/tasks/after-symlink.yml"
+  ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/deploy/tasks/before-symlink.yml"
+roles:
+  - { role: carlosbuenosvinos.ansistrano-deploy }</code></pre>
       </section>
       <section>
         <h3>Structure within your project</h3>
@@ -336,7 +334,7 @@ valid users = {{ netatalk.user }}
 ├── composer.lock
 ├── src
 ├── web
-├── invantories
+├── inventories
 │   ├── production
 │   ├── development
 │   └── staging
@@ -349,13 +347,13 @@ valid users = {{ netatalk.user }}
       <section>
         <h3>"Hooks"</h3>
         <pre><code class="language-css">./deploy/tasks/before-symlink.yml</code></pre>
-        <pre><code class="language-css">- name: Reload Apache
-  service: name=httpd state=reloaded</code></pre><br><br>
-        <pre><code class="language-css">./deploy/tasks/after-symlink.yml</code></pre>
         <pre><code class="language-css">- name: ensure cache dir
   file: path={{ ansistrano_release_path.stdout }}/app/cache state=directory mode=0775 recurse=true
 - name: ensure log dir
-  file: path={{ ansistrano_release_path.stdout }}/app/logs state=directory mode=0775 recurse=true</code></pre>
+  file: path={{ ansistrano_release_path.stdout }}/app/logs state=directory mode=0775 recurse=true</code></pre><br><br>
+        <pre><code class="language-css">./deploy/tasks/after-symlink.yml</code></pre>
+        <pre><code class="language-css">- name: Reload Apache
+  service: name=httpd state=reloaded</code></pre>
       </section>
       <section>
         <h3>Let's play</h3>
@@ -366,6 +364,20 @@ valid users = {{ netatalk.user }}
       </section>
       <section data-bespoke-state="topic">
         <h1>Tools & Hints</h1>
+      </section>
+      <section>
+        <h3>YAML Syntax</h3>
+        <p>It's up to you</p><br>
+        <h4>Short</h4>
+        <pre><code class="language-css">- name: ensure cache dir
+  file: path={{ ansistrano_release_path.stdout }}/app/cache state=directory mode=0775 recurse=true</code></pre><br>
+        <h4>Correct</h4>
+        <pre><code class="language-css">- name: ensure cache dir
+  file:
+    path: "{{ ansistrano_release_path.stdout }}/app/cache"
+    state: directory
+    mode: 0775
+    recurse: true</code></pre>
       </section>
       <section>
         <h3>Documentation</h3><a href="http://docs.ansible.com">http://docs.ansible.com</a><br><img src="images/documentation.png" width="500">
