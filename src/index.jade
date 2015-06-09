@@ -483,25 +483,23 @@ html
                 h1 Application deployment
             section
                 h3 Shared role "ansistrano"
-                h4 Capistrano or Deployer like application deployment
-                br
+                h4 Capistrano like application deployment
+                p Works as a drop-in replacement for capistrano or deployer
+                a(href="https://github.com/ansistrano/deploy") https://github.com/ansistrano/deploy
                 br
                 pre
                     code.language-css.
                         ./deploy.yml
                 pre
                     code.language-css.
-                        ---
-                        - name: Deploy Demo App to Server
-                          hosts: all
-                          sudo: true
-                          vars:
-                            ansistrano_deploy_from: "./"
-                            ansistrano_deploy_to: "/var/www/html"
-                            ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/deploy/tasks/after-symlink.yml"
-                            ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/deploy/tasks/before-symlink.yml"
-                          roles:
-                            - { role: carlosbuenosvinos.ansistrano-deploy }
+                      hosts: all
+                      vars:
+                        ansistrano_deploy_from: "./"
+                        ansistrano_deploy_to: "/var/www/html"
+                        ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/deploy/tasks/after-symlink.yml"
+                        ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/deploy/tasks/before-symlink.yml"
+                      roles:
+                        - { role: carlosbuenosvinos.ansistrano-deploy }
             section
                 h3 Structure within your project
                 pre
@@ -512,7 +510,7 @@ html
                         ├── composer.lock
                         ├── src
                         ├── web
-                        ├── invantories
+                        ├── inventories
                         │   ├── production
                         │   ├── development
                         │   └── staging
@@ -528,8 +526,10 @@ html
                         ./deploy/tasks/before-symlink.yml
                 pre
                     code.language-css.
-                        - name: Reload Apache
-                          service: name=httpd state=reloaded
+                        - name: ensure cache dir
+                          file: path={{ ansistrano_release_path.stdout }}/app/cache state=directory mode=0775 recurse=true
+                        - name: ensure log dir
+                          file: path={{ ansistrano_release_path.stdout }}/app/logs state=directory mode=0775 recurse=true
                 br
                 br
                 pre
@@ -537,10 +537,8 @@ html
                         ./deploy/tasks/after-symlink.yml
                 pre
                     code.language-css.
-                        - name: ensure cache dir
-                          file: path={{ ansistrano_release_path.stdout }}/app/cache state=directory mode=0775 recurse=true
-                        - name: ensure log dir
-                          file: path={{ ansistrano_release_path.stdout }}/app/logs state=directory mode=0775 recurse=true
+                        - name: Reload Apache
+                          service: name=httpd state=reloaded
             section
                 h3 Let's play
                 pre
@@ -550,6 +548,25 @@ html
                 h2 Video
             section(data-bespoke-state='topic')
                 h1 Tools & Hints
+            section
+                h3 YAML Syntax
+                p It's up to you
+                br
+                h4 Short
+                pre
+                    code.language-css.
+                        - name: ensure cache dir
+                          file: path={{ ansistrano_release_path.stdout }}/app/cache state=directory mode=0775 recurse=true
+                br
+                h4 Correct
+                pre
+                    code.language-css.
+                        - name: ensure cache dir
+                          file:
+                            path: "{{ ansistrano_release_path.stdout }}/app/cache"
+                            state: directory
+                            mode: 0775
+                            recurse: true
             section
                 h3 Documentation
                 a(href="http://docs.ansible.com") http://docs.ansible.com
