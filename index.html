@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Ansible presentation</title>
+    <title>ansible presentation</title>
     <link rel="stylesheet" type="text/css" href="build/build.css">
   </head>
   <body>
     <article>
       <section data-bespoke-state="topic"><img src="images/ansible_logo_black_square.png" width="300" height="300">
         <h3>for DevOps</h3>
-        <h5>Machine provisioning and application deployment with ease.</h5><br><br><small>Ansible presentation 06/15 @ Web-Dev-BBQ #4 Stuttgart/Germany</small>
+        <h5>Machine provisioning and application deployment with ease.</h5><br><br><small>ansible presentation 06/15 @ Web-Dev-BBQ #4 Stuttgart/Germany</small>
       </section>
       <section><b>Your flight captains for the next couple of minutes:</b><br>
         <h2>Markus Wanjura</h2>
@@ -23,7 +23,7 @@
       </section>
       <section>
         <ul class="bullet">
-          <li>What is Ansible?</li>
+          <li>What Is Ansible?</li>
           <li>The Basics</li>
           <li>Provisioning</li>
           <li>Application Deployment</li>
@@ -66,19 +66,19 @@
           <li>First release February 20, 2012 - 3 years ago<br><br></li>
           <li>Written in Python<br><br></li>
           <li>It runs over SSH or PowerShell<br><br></li>
-          <li>It was named "Ansible" after the fictional instantaneous hyperspace communication system featured in Orson Scott Card's "Ender's Game"<br><br></li>
+          <li>It was named "ansible" after the fictional instantaneous hyperspace communication system featured in Orson Scott Card's "Ender's Game"<br><br></li>
         </ul>
       </section>
       <section>
         <h2>Michael DeHaan's motivation?</h2>
-        <h3>"I wrote Ansible because none of the existing tools fit my brain.<br><br>I wanted a tool that I could not use for 6 months, come back later, and still remember how it worked."</h3>
+        <h3>"I wrote ansible because none of the existing tools fit my brain.<br><br>I wanted a tool that I could not use for 6 months, come back later, and still remember how it worked."</h3>
       </section>
       <section>
         <h2 class="black">Design goals</h2><br><br><br>
         <h3 class="black">Minimal in nature</h3>
         <text class="black">No additional dependencies on the environment.</text><br><br>
         <h3 class="black">Secure</h3>
-        <text class="black">Ansible does not deploy vulnerable agents to nodes.<br>Only OpenSSH is required.</text><br><br>
+        <text class="black">ansible does not deploy vulnerable agents to nodes.<br>Only OpenSSH is required.</text><br><br>
         <h3 class="black">Highly reliable</h3>
         <text class="black">Every run develivers the same result.</text><br><br>
         <h3 class="black">Low learning curve</h3>
@@ -139,7 +139,7 @@ pony ansible_ssh_host=192.168.1.50 ansible_ssh_user=vagrant
 </code></pre>
       </section>
       <section>
-        <h3>Ad-Hoc Ansible commands</h3>
+        <h3>Ad-Hoc ansible commands</h3>
         <p>Basic ping</p>
         <pre><code class="language-css">$ ansible -i inventories/mycluster webservers -m ping</code></pre><br><br>
         <p>Get free memory</p>
@@ -310,7 +310,7 @@ valid users = {{ netatalk.user }}
         <h2>Video</h2>
       </section>
       <section data-bespoke-state="topic">
-        <h1>Application deployment</h1>
+        <h1>Application Deployment</h1>
       </section>
       <section>
         <h3>Shared role "ansistrano"</h3>
@@ -417,7 +417,7 @@ roles:
         <h3>Ansible Tower</h3><a href="http://www.ansible.com/tower">http://www.ansible.com/tower</a><br><img src="images/dash-big.png" width="500">
       </section>
       <section>
-        <h3>Book "Ansible for DevOps" by Jeff Geerling</h3><a href="https://leanpub.com/ansible-for-devops">https://leanpub.com/ansible-for-devops</a><br><img src="images/geerling.jpeg" width="201" height="290">
+        <h3>Book "ansible for DevOps" by Jeff Geerling</h3><a href="https://leanpub.com/ansible-for-devops">https://leanpub.com/ansible-for-devops</a><br><img src="images/geerling.jpeg" width="201" height="290">
       </section>
       <section data-bespoke-state="topic">
         <h1>Questions?</h1>
