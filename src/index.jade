@@ -520,6 +520,29 @@ html
                         │       └── before-symlink.yml
                         └── deploy.yml
             section
+                h3 Structure on your servers
+                pre
+                    code.language-css.
+                        ├── current -> ./releases/20150608080601
+                        ├── releases
+                        │   ├── 20150605152333
+                        │   └── 20150608080601
+                        │       ├── app
+                        │       ├── src
+                        │       ├── logs -> ../../shared/logs
+                        │       └── ...
+                        ├── repo
+                        │   ├── branches
+                        │   ├── config
+                        │   ├── ...
+                        │   └── refs
+                        ├── shared
+                        │   ├── vendor
+                        │   ├── assets
+                        │   └── logs
+                        └── revisions.log
+
+            section
                 h3 "Hooks"
                 pre
                     code.language-css.
