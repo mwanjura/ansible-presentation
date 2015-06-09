@@ -345,6 +345,28 @@ roles:
 └── deploy.yml</code></pre>
       </section>
       <section>
+        <h3>Structure on your servers</h3>
+        <pre><code class="language-css">├── current -> ./releases/20150608080601
+├── releases
+│   ├── 20150605152333
+│   └── 20150608080601
+│       ├── app
+│       ├── src
+│       ├── logs -> ../../shared/logs
+│       └── ...
+├── repo
+│   ├── branches
+│   ├── config
+│   ├── ...
+│   └── refs
+├── shared
+│   ├── vendor
+│   ├── assets
+│   └── logs
+└── revisions.log
+</code></pre>
+      </section>
+      <section>
         <h3>"Hooks"</h3>
         <pre><code class="language-css">./deploy/tasks/before-symlink.yml</code></pre>
         <pre><code class="language-css">- name: ensure cache dir
