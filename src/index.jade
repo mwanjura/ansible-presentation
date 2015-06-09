@@ -18,7 +18,6 @@ html
                 br
                 br
                 small Ansible presentation 06/15 @ Web-Dev-BBQ #4 Stuttgart/Germany
-
             section
                 b Your flight captains for the next couple of minutes:
                 br
@@ -33,16 +32,14 @@ html
                 br
                 p Wir suchen gerade<br>Frontend-Freelancer!
                     img.hiring(src='http://d4e.io/hiring.gif' width='120')
-
             section
                 ul.bullet
                     li What is Ansible?
                     li The Basics
-                    li Provisioning & Best Practice
+                    li Provisioning
                     li Application Deployment
                     li Tools & Tipps
-
-            section.gif.gif--poison
+            section.gif.gif--poison(data-bespoke-state='dark')
                 h2.white What's your poison?
                 br
                 br
@@ -58,8 +55,7 @@ html
                 br
                 br
                 h2.white Or all of them?
-
-            section.gif.gif--complicated
+            section.gif.gif--complicated(data-bespoke-state='dark')
                 br
                 br
                 br
@@ -74,8 +70,7 @@ html
                 br
                 br
                 h2.white You think DevOps and the tools are complicated?
-
-            section.gif.gif--hate
+            section.gif.gif--hate(data-bespoke-state='dark')
                 h1.white You hate it?
                 br
                 br
@@ -97,8 +92,7 @@ html
                 br
                 br
                 br
-
-            section.gif.gif--agree
+            section.gif.gif--agree(data-bespoke-state='dark')
                 h1.white You're right!
                 br
                 br
@@ -113,8 +107,7 @@ html
                 br
                 br
                 br
-
-            section.gif.gif--shame
+            section.gif.gif--shame(data-bespoke-state='dark')
                 br
                 br
                 br
@@ -126,12 +119,10 @@ html
                 br
                 br
                 br
-                h3.white So you're not an fulltime admin?<br>Neither one of those cool DevOps?
-
-            section.gif.gif--hope
+                h3.white Are you serious?<br>No DevOps for you?
+            section.gif.gif--hope(data-bespoke-state='dark')
                 br
                 br
-                h1.white But wait!
                 br
                 br
                 br
@@ -144,8 +135,7 @@ html
                 br
                 h2.white You know YAML?
                 h2.white A bit of BASH?
-
-            section.gif.gif--happiness
+            section.gif.gif--happiness(data-bespoke-state='dark')
                 br
                 br
                 br
@@ -160,11 +150,9 @@ html
                 br
                 br
                 h1.white Damn!
-                h2.white You are a real DevOps!!!
-
-            section
+                h2.white You are a freaking awesome DevOps pro!!!
+            section(data-bespoke-state='topic')
                 h1 So what is ansible?
-
             section
                 h2 So what is ansible?
                 br
@@ -175,11 +163,9 @@ html
                     li Written in Python<br><br>
                     li It runs over SSH or PowerShell<br><br>
                     li It was named "Ansible" after the fictional instantaneous hyperspace communication system featured in Orson Scott Card's "Ender's Game"<br><br>
-
             section
                 h2 Michael DeHaan's motivation?
                 h3 "I wrote Ansible because none of the existing tools fit my brain.<br><br>I wanted a tool that I could not use for 6 months, come back later, and still remember how it worked."
-
             section
                 h2.black Design goals
                 br
@@ -199,8 +185,7 @@ html
                 br
                 h3.black Low learning curve
                 text.black Playbooks use an easy and descriptive language based on YAML.
-
-            section.gif.gif--fun
+            section.gif.gif--fun(data-bespoke-state='dark')
                 h2.white Ok let's have some fun!
                 br
                 br
@@ -228,40 +213,377 @@ html
                 br
                 br
                 br
-
-            section
+            section(data-bespoke-state='topic')
                 h1 Ansible Basics
-
             section
-                h3 ... is worth a thousand words.<br>A complete playbook.
-                h6 Installs an Apache webserver, configures and restarts it. On 1 or 1000 Servers...
+                h3 ... is worth a thousand words.<br>A basic playbook.
+                h6 Installs an Apache, configures and restarts it. On 1 or 1000 Servers...
                 pre
                     code.language-css.
                         - hosts: webservers
+
                           vars:
                             http_port: 80
+
                           tasks:
                             - name: ensure apache is at the latest version
                               yum: pkg=httpd state=latest
+
                             - name: write the apache config file
                               template: src=/srv/httpd.j2 dest=/etc/httpd.conf
-                              notify:
-                                - restart apache
+
                             - name: ensure apache is running (and enable it at boot)
                               service: name=httpd state=started enabled=yes
-                          handlers:
-                            - name: restart apache
-                              service: name=httpd state=restarted
+            section
+                h2 But lets start step by step
+            section
+                h3 Install ansible
+                p Python only
+                pre
+                    code.language-css.
+                        $ sudo pip install ansible
+                br
+                br
+                p On CentOS with EPEL repo enabled
+                pre
+                    code.language-css.
+                        $ sudo yum -y install ansible
+                br
+                br
+                p On Debian or Ubuntu with ansible ppa enabled
+                pre
+                    code.language-css.
+                        $ sudo apt-get install -y ansible
+            section
+                h3 Inventories
+                pre
+                    code.language-css.
+                        ./inventories/mycluster
+                br
+                p Content of the inventory file
+                pre
+                    code.language-css.
+                        [mycluster]
+                        node-01.internal.acme.com
+                        node-02.internal.acme.com
+
+                        [webservers]
+                        node-[01:1000].internal.acme.com
+
+                        [databases]
+                        db-[a:f].internal.acme.com
+
+                        [myspecialpony]
+                        pony ansible_ssh_host=192.168.1.50 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+
+            section
+                h3 Ad-Hoc Ansible commands
+                p Basic ping
+                pre
+                    code.language-css.
+                        $ ansible -i inventories/mycluster webservers -m ping
+                br
+                br
+                p Get free memory
+                pre
+                    code.language-css.
+                        $ ansible -i inventories/mycluster databases -a 'free -m'
+            section
+                h3 Playbooks
+                pre
+                    code.language-css.
+                        ./site.yml
+                pre
+                    code.language-css.
+                        - hosts: webservers
+
+                          vars:
+                            http_port: 80
+
+                          tasks:
+                            - name: ensure apache is at the latest version
+                              yum: pkg=httpd state=latest
+
+                            - name: write the apache config file
+                              template: src=/srv/httpd.j2 dest=/etc/httpd.conf
+
+                            - name: ensure apache is running (and enable it at boot)
+                              service: name=httpd state=started enabled=yes
+            section
+                h3 Roles
+                h6 Installs an Apache and PHP
+                pre
+                    code.language-css.
+                        - hosts: webservers
+
+                          vars:
+                            http_port: 80
+                            hostname: foobar.tld
+                            max_allowed_memory: 128M
+
+                          roles:
+                            - { role: apache, tags: apache }
+                            - { role: geerlingguy.php, tags: php }
+                br
+                p Your apache tasks are now located here
+                pre
+                    code.language-css.
+                        ./roles/apache/tasks/main.yml
+            section
+                h3 Shared roles
+                pre
+                    code.language-css.
+                        - hosts: webservers
+                          roles:
+                            - { role: apache, tags: apache }
+                            - { role: geerlingguy.php, tags: php }
+                br
+                p Install a shared role globally
+                pre
+                    code.language-css.
+                        $ ansible-galaxy install geerlingguy.php
+
+                        - downloading role 'php', owned by geerlingguy
+                        - downloading role from https://github.com/geerlingguy/ansible-role-php/archive/1.6.1.tar.gz
+                        - extracting geerlingguy.php to /etc/ansible/roles/geerlingguy.php
+            section
+                h3 Shared roles
+                pre
+                    code.language-css.
+                        ./ansible.cfg
+                pre
+                    code.language-css.
+                        [defaults]
+                        roles_path = ./vendor:./roles
+                br
+                p Install a shared role locally
+                    pre
+                        code.language-css.
+                            $ ansible-galaxy install geerlingguy.php
+                            - downloading role 'php', owned by geerlingguy
+                            - downloading role from https://github.com/geerlingguy/ansible-role-php/archive/1.6.1.tar.gz
+                            - extracting geerlingguy.php to ./vendor/geerlingguy.php
+
+            section
+                h3 Variables
+                h6 The vars_files
+                pre
+                    code.language-css.
+                        - hosts: webservers
+
+                          vars_files:
+                            - vars/main.yml
+
+                          roles:
+                            - { role: apache, tags: apache }
+                            - { role: geerlingguy.php, tags: php }
+                br
+                p Your vars are now located here
+                pre
+                    code.language-css.
+                        ./roles/apache/vars/main.yml
+            section
+                h3 Folder structure
+                pre
+                    code.language-css.
+                        ├── ansible.cfg
+                        ├── site.yml
+                        ├── host_vars
+                        │   └── myspecialpony.local
+                        ├── group_vars
+                        │   └── webservers
+                        ├── inventories
+                        │   ├── mycluster
+                        ├── roles
+                        │   └── apache
+                        │       ├── tasks
+                        │       │   └── main.yml
+                        │       └── vars
+                        │           └── main.yml
+                        ├── vendor
+                        │   └── geerlingguy.php
+                        └── vars
+                            └── main.yml
+            section
+                h3 Templates
+                p Jinja2 python template engine (Symfony/Twig originates from jinja)
+                pre
+                    code.language-css.
+                        ├── site.yml
+                        ├── roles
+                        │   └── apache
+                        │       ├── tasks
+                        │       ├── ...
+                        │       └── templates
+                        │           └── httpd.j2
+                pre
+                    code.language-css.
+                        - name: write the apache config file
+                          template: src=/srv/httpd.j2 dest=/etc/httpd.conf
+                pre
+                    code.language-css.
+                        ...
+                        # prevent Apache from glomming onto all bound IP addresses.
+                        Listen {{ http_port }}
+                        ...
+            section
+                h3 Templates
+                p A more advanced example
+                pre
+                    code.language-css.
+                        ################################################
+                        # {{ ansible_managed }}
+                        ################################################
+                        [Global]
+                        hostname = {{ netatalk.hostname }}
+                        login message = "{{ netatalk.welcome_message }}"
+                        mimic model = {{ netatalk.icon }}
+                        zeroconf = yes
+                        uam list = uams_guest.so
+                        guest account = {{ netatalk.user }}
+                        log level = default:debug
+                        {% for item in netatalk.shares %}
+                        [{{ item.name }}]
+                        path = {{ netatalk.rootpath }}{{ item.name }}
+                        valid users = {{ netatalk.user }}
+                        {% endfor %}
+            section(data-bespoke-state='topic')
+                h1 Provisioning
+            section
+                p A complete LAMP stack on CentOS 7.1
+                pre
+                    code.language-css.
+                        - hosts: all
+                          sudo: true
+                          vars_files:
+                            - vars/main.yml
+                          pre_tasks:
+                            - selinux: state=disabled # only for demo
+                            - service: name=firewalld state=stopped # only for demo
+                          post_tasks:
+                            - file: path=/etc/httpd/conf.d/welcome.conf state=absent
+                            - service: name=httpd enabled=true state=reloaded
+                          roles:
+                            - { role: repo_epel, tags: repo_epel }
+                            - { role: repo_remi, tags: repo_remi }
+                            - { role: geerlingguy.ntp, tags: ntp }
+                            - { role: common, tags: common }
+                            - { role: mwanjura.mysql, tags: mysql }
+                            - { role: geerlingguy.php, tags: php }
+                            - { role: geerlingguy.apache, tags: apache }
+                            - { role: geerlingguy.composer, tags: composer }
+            section
+                h3 Let's play
+                pre
+                    code.language-css.
+                        $ ansible-playbook site.yml -i inventories/mycluster
+            section
+                h2 Video
+            section(data-bespoke-state='topic')
+                h1 Application deployment
+            section
+                h3 Shared role "ansistrano"
+                h4 Capistrano or Deployer like application deployment
+                br
+                br
+                pre
+                    code.language-css.
+                        ./deploy.yml
+                pre
+                    code.language-css.
+                        ---
+                        - name: Deploy Demo App to Server
+                          hosts: all
+                          sudo: true
+                          vars:
+                            ansistrano_deploy_from: "./"
+                            ansistrano_deploy_to: "/var/www/html"
+                            ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/deploy/tasks/after-symlink.yml"
+                            ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/deploy/tasks/before-symlink.yml"
+                          roles:
+                            - { role: carlosbuenosvinos.ansistrano-deploy }
+            section
+                h3 Structure within your project
+                pre
+                    code.language-css.
+                        ├── README.md
+                        ├── app
+                        ├── composer.json
+                        ├── composer.lock
+                        ├── src
+                        ├── web
+                        ├── invantories
+                        │   ├── production
+                        │   ├── development
+                        │   └── staging
+                        ├── deploy
+                        │   └── tasks
+                        │       ├── after-symlink.yml
+                        │       └── before-symlink.yml
+                        └── deploy.yml
+            section
+                h3 "Hooks"
+                pre
+                    code.language-css.
+                        ./deploy/tasks/before-symlink.yml
+                pre
+                    code.language-css.
+                        - name: Reload Apache
+                          service: name=httpd state=reloaded
+                br
+                br
+                pre
+                    code.language-css.
+                        ./deploy/tasks/after-symlink.yml
+                pre
+                    code.language-css.
+                        - name: ensure cache dir
+                          file: path={{ ansistrano_release_path.stdout }}/app/cache state=directory mode=0775 recurse=true
+                        - name: ensure log dir
+                          file: path={{ ansistrano_release_path.stdout }}/app/logs state=directory mode=0775 recurse=true
+            section
+                h3 Let's play
+                pre
+                    code.language-css.
+                        $ ansible-playbook deploy.yml -i inventories/production
+            section
+                h2 Video
+            section(data-bespoke-state='topic')
+                h1 Tools & Tipps
+            section
+                h3 Documentation
+                a(href="http://docs.ansible.com") http://docs.ansible.com
+                br
+                img(src='images/documentation.png' width=500)
+            section
+                h3 Ansible Galaxy
+                a(href="https://galaxy.ansible.com/") https://galaxy.ansible.com/
+                br
+                img(src='images/galaxy.png' width=600)
+            section
+                h3 Ansible Galaxy
+                h4 Remember?
+                p Install a shared role
+                pre
+                    code.language-css.
+                        $ ansible-galaxy install geerlingguy.php
+            section
+                h3 Ansible Tower
+                a(href="http://www.ansible.com/tower") http://www.ansible.com/tower
+                br
+                img(src='images/dash-big.png' width=500)
+            section
+                h3 Book "Ansible for DevOps" by Jeff Geerling
+                a(href="https://leanpub.com/ansible-for-devops") https://leanpub.com/ansible-for-devops
+                br
+                img(src='images/geerling.jpeg' width=201 height=290)
+            section(data-bespoke-state='topic')
+                h1 Questions?
+            section(data-bespoke-state='topic')
+                h1 Thank you!
             section
                 h2 Fork me!
-                h3 And have some instant fun<br> with
-
-            section
-                h2 Questions?
-
-            section
-                h2 Thank you!
-                img(src='images/qrcode.png' width='200')
-                a(href="https://github.com/mwanjura/ansible-presentation") github.com/mwanjura/ansible-presentation
+                h3 And have some instant fun<br> with ansible
+                a(href="https://github.com/mwanjura/ansible-presentation") https://github.com/mwanjura/ansible-presentation
 
         script(src='build/build.js')

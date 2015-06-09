@@ -5,15 +5,15 @@
 // thanks to Stylus' "import css" and "paths" options
 
 @import 'prism/themes/prism.css'
-@import 'prism/themes/prism-twilight.css'
+@import 'prism/themes/prism-okaidia.css'
 // Check out "bower_components/prism/themes/" for available themes
 
 
 // Variables
 
 primary = white
-anger = #FF9900
-danger = red
+topic = #64c5c7
+dark = #000
 elastic = #74b73f
 
 slide_width = 640px
@@ -62,12 +62,13 @@ article
       overflow: visible
       position: static
 
-    &.anger
-      background: #FF9900
+    &.topic
+      background: #64c5c7
+      color: white
       .bespoke-progress-bar
         background: white
-    &.danger
-      background: red
+    &.dark
+      background: #000
       color: white
       .bespoke-progress-bar
         background: white
@@ -170,7 +171,7 @@ article
   transition: width .6s ease
   position: absolute
   height: 100%
-  background: elastic
+  background: #64c5c7
 
 // bespoke-state styles
 
