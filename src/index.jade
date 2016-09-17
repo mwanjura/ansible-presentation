@@ -3,7 +3,7 @@ html
     head
         meta(charset='utf-8')
         meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
-        title ansible presentation
+        title Ansible presentation
 
         link(rel='stylesheet', type='text/css', href='build/build.css')
 
@@ -12,26 +12,17 @@ html
         article
 
             section(data-bespoke-state='topic')
-                img(src='images/ansible_logo_black_square.png' width='300' height='300')
+                img(src='images/Ansible_logo_black_square.png' width='300' height='300')
                 h3 for DevOps
                 h5 Machine provisioning and application deployment with ease.
                 br
-                br
-                small ansible presentation 06/15 @ Web-Dev-BBQ #4 Stuttgart/Germany
             section
                 b Your flight captains for the next couple of minutes:
-                br
-                h2 Markus Wanjura
-                p Head of IT & Development&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br> @ develop4edu GmbH Stuttgart
-                p XING: <a href="http://xing.to/wanjura" target="_blank">xing.to/wanjura</a> GitHub: <a href="http://git.io/FGqg" target="_blank">git.io/FGqg</a>
-                br
+
                 h2 Felix Peters
                 p Application Developer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br> @ develop4edu GmbH Stuttgart
                 p XING: <a href="http://xing.to/flxpeters" target="_blank">xing.to/flxpeters</a> GitHub: <a href="http://git.io/vIlcG" target="_blank">git.io/vIlcG</a>
                 br
-                br
-                p We are just looking for <br>frontend freelancers!<br>Apply now!
-                    img.hiring(src='http://d4e.io/hiring.gif' width='120')
             section
                 ul.bullet
                     li What Is Ansible?
@@ -43,14 +34,14 @@ html
                 h2.white What's your poison?
                 br
                 br
-                br
+
                 br
                 br
                 br
                 h3.white Puppet, Chef, Salt, Cobbler, CFEngine, YADT, JuJu, BASH, Ant, Phing, Capistrano, Deployer, Drush, Surf, Docker, Rocket...?
                 br
                 br
-                br
+
                 br
                 br
                 br
@@ -82,31 +73,9 @@ html
                 br
                 br
                 br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
             section.gif.gif--agree(data-bespoke-state='dark')
                 h1.white You're right!
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
+
             section.gif.gif--shame(data-bespoke-state='dark')
                 br
                 br
@@ -152,9 +121,9 @@ html
                 h1.white Damn!
                 h2.white You are a freaking awesome DevOps pro!!!
             section(data-bespoke-state='topic')
-                h1 So what is ansible?
+                h1 So what is Ansible?
             section
-                h2 So what is ansible?
+                h2 So what is Ansible?
                 br
                 ul.bullet
                     li An open-source software for configuring and managing computers.<br><br>
@@ -162,59 +131,33 @@ html
                     li First release February 20, 2012 - 3 years ago<br><br>
                     li Written in Python<br><br>
                     li It runs over SSH or PowerShell<br><br>
-                    li It was named "ansible" after the fictional instantaneous hyperspace communication system featured in Orson Scott Card's "Ender's Game"<br><br>
+                    li It was named "Ansible" after the fictional instantaneous hyperspace communication system featured in Orson Scott Card's "Ender's Game"<br><br>
             section
                 h2 Michael DeHaan's motivation?
-                h3 "I wrote ansible because none of the existing tools fit my brain.<br><br>I wanted a tool that I could not use for 6 months, come back later, and still remember how it worked."
+                h3 "I wrote Ansible because none of the existing tools fit my brain.<br><br>I wanted a tool that I could not use for 6 months, come back later, and still remember how it worked."
             section
                 h2.black Design goals
-                br
-                br
-                br
+
                 h3.black Minimal in nature
                 text.black No additional dependencies on the environment.
                 br
-                br
+
                 h3.black Secure
-                text.black ansible does not deploy vulnerable agents to nodes.<br>Only OpenSSH is required.
+                text.black Ansible does not deploy vulnerable agents to nodes.<br>Only OpenSSH is required.
                 br
-                br
+
                 h3.black Highly reliable
                 text.black Every run develivers the same result.
                 br
-                br
+
                 h3.black Low learning curve
                 text.black Playbooks use an easy and descriptive language based on YAML.
             section.gif.gif--fun(data-bespoke-state='dark')
                 h2.white Ok let's have some fun!
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
-                br
+
             section(data-bespoke-state='topic')
                 h1 Ansible Basics
+
             section
                 h3 ... is worth a thousand words.<br>A basic playbook.
                 h6 Installs an Apache, configures and restarts it. On 1 or 1000 Servers...
@@ -237,23 +180,23 @@ html
             section
                 h2 But let's start step by step
             section
-                h3 Install ansible
+                h3 Install Ansible
                 p Python only
                 pre
                     code.language-css.
-                        $ sudo pip install ansible
+                        $ sudo pip install Ansible
                 br
                 br
                 p On CentOS with EPEL repo enabled
                 pre
                     code.language-css.
-                        $ sudo yum -y install ansible
+                        $ sudo yum -y install Ansible
                 br
                 br
-                p On Debian or Ubuntu with ansible ppa
+                p On Debian or Ubuntu with Ansible ppa
                 pre
                     code.language-css.
-                        $ sudo apt-get install -y ansible
+                        $ sudo apt-get install -y Ansible
             section
                 h3 Inventories
                 pre
@@ -274,20 +217,20 @@ html
                         db-[a:f].internal.acme.com
 
                         [myspecialpony]
-                        pony ansible_ssh_host=192.168.1.50 ansible_ssh_user=vagrant
+                        pony Ansible_ssh_host=192.168.1.50 Ansible_ssh_user=vagrant
 
             section
-                h3 Ad-Hoc ansible commands
+                h3 Ad-Hoc Ansible commands
                 p Basic ping
                 pre
                     code.language-css.
-                        $ ansible -i inventories/mycluster webservers -m ping
+                        $ Ansible -i inventories/mycluster webservers -m ping
                 br
                 br
                 p Get free memory
                 pre
                     code.language-css.
-                        $ ansible -i inventories/mycluster databases -a 'free -m'
+                        $ Ansible -i inventories/mycluster databases -a 'free -m'
             section
                 h3 Playbooks
                 pre
@@ -341,16 +284,16 @@ html
                 p Install a shared role globally
                 pre
                     code.language-css.
-                        $ ansible-galaxy install geerlingguy.php
+                        $ Ansible-galaxy install geerlingguy.php
 
                         - downloading role 'php', owned by geerlingguy
-                        - downloading role from https://github.com/geerlingguy/ansible-role-php/archive/1.6.1.tar.gz
-                        - extracting geerlingguy.php to /etc/ansible/roles/geerlingguy.php
+                        - downloading role from https://github.com/geerlingguy/Ansible-role-php/archive/1.6.1.tar.gz
+                        - extracting geerlingguy.php to /etc/Ansible/roles/geerlingguy.php
             section
                 h3 Shared roles
                 pre
                     code.language-css.
-                        ./ansible.cfg
+                        ./Ansible.cfg
                 pre
                     code.language-css.
                         [defaults]
@@ -359,9 +302,9 @@ html
                 p Install a shared role locally
                     pre
                         code.language-css.
-                            $ ansible-galaxy install geerlingguy.php
+                            $ Ansible-galaxy install geerlingguy.php
                             - downloading role 'php', owned by geerlingguy
-                            - downloading role from https://github.com/geerlingguy/ansible-role-php/archive/1.6.1.tar.gz
+                            - downloading role from https://github.com/geerlingguy/Ansible-role-php/archive/1.6.1.tar.gz
                             - extracting geerlingguy.php to ./vendor/geerlingguy.php
 
             section
@@ -386,7 +329,7 @@ html
                 h3 Folder structure
                 pre
                     code.language-css.
-                        ├── ansible.cfg
+                        ├── Ansible.cfg
                         ├── site.yml
                         ├── host_vars
                         │   └── myspecialpony.local
@@ -432,7 +375,7 @@ html
                 pre
                     code.language-css.
                         ################################################
-                        # {{ ansible_managed }}
+                        # {{ Ansible_managed }}
                         ################################################
                         [Global]
                         hostname = {{ netatalk.hostname }}
@@ -476,7 +419,7 @@ html
                 h3 Let's play
                 pre
                     code.language-css.
-                        $ ansible-playbook site.yml -i inventories/mycluster
+                        $ Ansible-playbook site.yml -i inventories/mycluster
             section
                 iframe(width="560", height="315", src="https://www.youtube.com/embed/nuO1p64Ztg8?rel=0", frameborder="0", allowfullscreen='allowfullscreen')
             section(data-bespoke-state='topic')
@@ -566,7 +509,7 @@ html
                 h3 Let's play
                 pre
                     code.language-css.
-                        $ ansible-playbook deploy.yml -i inventories/production
+                        $ Ansible-playbook deploy.yml -i inventories/production
             section
                 iframe(width="560", height="315", src="https://www.youtube.com/embed/CPz5zPzzMZE?rel=0", frameborder="0", allowfullscreen='allowfullscreen')
             section(data-bespoke-state='topic')
@@ -592,12 +535,12 @@ html
                             recurse: true
             section
                 h3 Documentation
-                a(href="http://docs.ansible.com") http://docs.ansible.com
+                a(href="http://docs.Ansible.com") http://docs.Ansible.com
                 br
                 img(src='images/documentation.png' width=500)
             section
                 h3 Ansible Galaxy
-                a(href="https://galaxy.ansible.com/") https://galaxy.ansible.com/
+                a(href="https://galaxy.Ansible.com/") https://galaxy.Ansible.com/
                 br
                 img(src='images/galaxy.png' width=600)
             section
@@ -606,15 +549,15 @@ html
                 p Install a shared role
                 pre
                     code.language-css.
-                        $ ansible-galaxy install geerlingguy.php
+                        $ Ansible-galaxy install geerlingguy.php
             section
                 h3 Ansible Tower
-                a(href="http://www.ansible.com/tower") http://www.ansible.com/tower
+                a(href="http://www.Ansible.com/tower") http://www.Ansible.com/tower
                 br
                 img(src='images/dash-big.png' width=500)
             section
-                h3 Book "ansible for DevOps" by Jeff Geerling
-                a(href="https://leanpub.com/ansible-for-devops") https://leanpub.com/ansible-for-devops
+                h3 Book "Ansible for DevOps" by Jeff Geerling
+                a(href="https://leanpub.com/Ansible-for-devops") https://leanpub.com/Ansible-for-devops
                 br
                 img(src='images/geerling.jpeg' width=201 height=290)
             section(data-bespoke-state='topic')
@@ -623,7 +566,7 @@ html
                 h1 Thank you!
             section
                 h2 Fork me!
-                h3 And have some instant fun<br> with ansible
-                a(href="https://github.com/mwanjura/ansible-presentation") https://github.com/mwanjura/ansible-presentation
+                h3 And have some instant fun<br> with Ansible
+                a(href="https://github.com/mwanjura/Ansible-presentation") https://github.com/mwanjura/Ansible-presentation
 
         script(src='build/build.js')
